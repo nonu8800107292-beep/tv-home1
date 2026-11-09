@@ -1,15 +1,7 @@
 name: Build APK
 
-# Builds launcher/ into tvhome.apk on GitHub's runners (they ship the Android SDK), so you don't need
-# Android tooling on your own computer. Download the APK from the run's "Artifacts" section.
 on:
   push:
-    paths:
-      - "launcher/**"
-      - ".github/workflows/build-apk.yml"
-  pull_request:
-    paths:
-      - "launcher/**"
   workflow_dispatch:
 
 jobs:
@@ -17,6 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Find the launcher folder
+        id: find
+        run: |
+          echo "Repo contents:"; ls -la; echo
+          SCRIPT=$(find . -type f -name build-and-install.sh -path '*launcher*' | head -n 1)
+          if [ -z "$SCRIPT" ]; then
+            echo "::error::launcher/build-and-install.sh is not in this repo. Upload the 'launcher' folder."
+            exit 1
+          fi
+          echo "script=$SCRIPT" >> "$GITHUB_OUTPUT"
+          echo "dir=$(dirname "$SCRIPT")" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-java@v4
         with:
@@ -28,19 +32,11 @@ jobs:
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
 
-      # Keep the signing key between runs, so a new build installs over the previous one
-      # (otherwise run `adb uninstall com.mihir.tvhome` first).
-      - uses: actions/cache@v4
-        with:
-          path: launcher/debug.keystore
-          key: tvhome-debug-keystore-v1
-
       - name: Build
-        run: bash launcher/build-and-install.sh --build
+        run: bash "${{ steps.find.outputs.script }}" --build
 
       - uses: actions/upload-artifact@v4
         with:
           name: tvhome-apk
-          path: launcher/build/tvhome.apk
+          path: ${{ steps.find.outputs.dir }}/build/tvhome.apk
           if-no-files-found: error
-
