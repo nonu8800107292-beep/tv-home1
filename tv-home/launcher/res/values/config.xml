@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher settings. Edit, then run launcher/build-and-install.sh (or push to GitHub and let the
+  "Build APK" workflow do it).
+  Package names on your TV:  adb shell pm list packages -3        (apps you installed)
+                             adb shell pm list packages           (everything)
+-->
+<resources>
+    <!-- Pinned apps in the glass panel, top to bottom. At most 6 are shown; the "Apps" entry that opens
+         the full list is always added below them. Apps that aren't installed are skipped. -->
+    <string-array name="dock_apps">
+        <item>com.google.android.youtube.tv</item>
+        <item>com.netflix.ninja</item>
+        <item>com.stremio.one</item>
+        <item>in.startv.hotstar.dplus.tv</item>
+        <item>in.startv.hotstar</item>
+        <item>org.videolan.vlc</item>
+        <item>com.android.vending</item>
+    </string-array>
+
+    <!-- Never shown anywhere (panel or the Apps list): helpers you never open. -->
+    <string-array name="hidden_apps">
+        <item>com.google.android.tvrecommendations</item>
+    </string-array>
+
+    <!-- Columns in the full Apps list. -->
+    <integer name="columns">6</integer>
+
+    <!-- Tint laid over the blurred wallpaper inside the glass panel (ARGB). Raise the first two digits
+         for a darker, more solid panel; lower them for clearer glass. -->
+    <color name="glass_tint">#66141821</color>
+</resources>

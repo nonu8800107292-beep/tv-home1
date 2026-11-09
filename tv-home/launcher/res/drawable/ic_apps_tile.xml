@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark rounded tile with four rings: the "Apps" entry in the panel. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp" android:height="40dp"
+    android:viewportWidth="40" android:viewportHeight="40">
+    <path android:fillColor="#FF2B2C31"
+        android:pathData="M10,0h20a10,10 0 0 1 10,10v20a10,10 0 0 1 -10,10h-20a10,10 0 0 1 -10,-10v-20a10,10 0 0 1 10,-10z" />
+    <path android:strokeColor="#FFE6E6E8" android:strokeWidth="1.6"
+        android:pathData="M14,9.6a4.4,4.4 0 1,0 0,8.8a4.4,4.4 0 1,0 0,-8.8z" />
+    <path android:strokeColor="#FFE6E6E8" android:strokeWidth="1.6"
+        android:pathData="M26,9.6a4.4,4.4 0 1,0 0,8.8a4.4,4.4 0 1,0 0,-8.8z" />
+    <path android:strokeColor="#FFE6E6E8" android:strokeWidth="1.6"
+        android:pathData="M14,21.6a4.4,4.4 0 1,0 0,8.8a4.4,4.4 0 1,0 0,-8.8z" />
+    <path android:strokeColor="#FFE6E6E8" android:strokeWidth="1.6"
+        android:pathData="M26,21.6a4.4,4.4 0 1,0 0,8.8a4.4,4.4 0 1,0 0,-8.8z" />
+</vector>

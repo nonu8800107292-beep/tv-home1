@@ -1,0 +1,11 @@
+# Realme 4K Smart Google TV Stick, Android 14 (Google TV)
+# Apply: tools/disable-adb.sh examples/realme-4k-tv-stick/debloat.txt     Undo: tools/restore-adb.sh <same file>
+# Everything is DISABLED for user 0, never uninstalled.
+#
+# This list is intentionally EMPTY: package names differ between firmware versions and I haven't seen your
+# stick's package list. Build it from your own device (see README.md in this folder), one package per line,
+# with a comment saying what it is, for example:
+#
+# com.example.vendor.promo           # promo popups
+#
+# Comment out (#) any line for something you use.
